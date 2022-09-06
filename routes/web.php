@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,11 @@ Route::controller(PersonController::class)->group(function(){
     Route::post('login','validate_login')->name('login');
     Route::get('dashboard','dashboard')->name('dashboard');
     Route::get('logout','logout')->name('logout');
+});
+
+
+//To implement api/page/create with loading feed and logout functionality
+Route::controller(PageController::class)->group(function(){
+    Route::get('page/create','create_page')->name('page/create');
+    Route::post('page-creation','page_creation')->name('page-creation');
 });

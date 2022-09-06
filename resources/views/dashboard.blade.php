@@ -7,10 +7,15 @@
             <div class="card">
                 <div class="card-header">{{ __('DashBoard') }}</div>
 
+                <div class="text-center">
+                     <button><a href="{{ route('page/create') }}">Create New Page</a></button>
+                </div>
                 <div class="card-body">
                     <div><h1>You are loged in </h1></div>
+                    <br>
+                    
                 </div>
-                    </form>
+                   
                 </div>
             </div>
         </div>
