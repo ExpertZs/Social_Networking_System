@@ -18,8 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//To load initial page of the software
 Route::get('/home', [App\Http\Controllers\PersonController::class, 'index'])->name('home');
 
+//To implement api/auth/register and api/auth/login with loading feed and logout functionality
 Route::controller(PersonController::class)->group(function(){
     Route::get('auth/login','login')->name('auth/login');
     Route::get('auth/register','registration')->name('auth/register');

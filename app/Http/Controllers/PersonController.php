@@ -9,16 +9,19 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class PersonController extends Controller
-{    
+{   
+    //Initial page of the project 
     public function index()
     {
         return view('auth/login');
     }
 
+    //To integrade api/auth/register api here to load registration form
     function registration(){
         return view('auth/register');
     }
 
+    //To integrade api/auth/register here to validate and store registration form data into database
     function register(Request $request){
          $request->validate( [
             'first_name' => ['required', 'string', 'max:255'],
@@ -37,10 +40,12 @@ class PersonController extends Controller
         return redirect('home')->with('success', 'Registration complete now you can login');
     }
 
+    //To integrade api/auth/login api here to load login form
     function login(){
         return view('auth/login');
     }
 
+    //To integrade api/auth/login here to validate and redirect to login form data 
     function validate_login(Request $request){
         $request->validate([
             'email' => 'required', 
@@ -53,6 +58,7 @@ class PersonController extends Controller
         return redirect('auth/login')->with('failure', 'you can not login');
     }
 
+    //To load person's feed data
     function dashboard(){
         if(Auth::check()){
             return view('dashboard');
@@ -61,7 +67,7 @@ class PersonController extends Controller
         return redirect('home')->with('failure', 'you are not loged in');
     }
 
-
+    //To log out from current user
     function logout(){
         Session::flush();
         Auth::logout();

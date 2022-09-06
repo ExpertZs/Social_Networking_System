@@ -29,7 +29,11 @@
                         <br>
                     </div>
 
-                    
+                    <div>
+                        <a href="{{ route('auth/register') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                        <br>
+                        <br>
+                    </div>
                        
                     @endauth
                 </div>
