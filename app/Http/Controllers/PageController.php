@@ -11,15 +11,16 @@ use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
+    //To integrade api/page/create here to load page creation form
     function create_page(){
         return view('page/createpage');
     }
 
  
-    //To integrade api/auth/register here to validate and store registration form data into database
-    
+    //To integrade api/page/create here to validate and store page creation form data into database
     function page_creation(Request $request){
         $user_id=Auth::user()->id;
+        //checking that person is whether valid user or not
         if($user_id== 'null'){
             return redirect('dashboard')->with('failure', 'Please login first to create any page');
         }
