@@ -39,7 +39,6 @@ class PostController extends Controller
     }
 
     //To integrade api/page/{pageId}/attach-post here to load page post creation form
-    
     function create_page_post($pageId){
         $page['page']=Page::where('id',$pageId)->first();
         return view('page/page', $page);
