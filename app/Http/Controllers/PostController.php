@@ -17,7 +17,7 @@ class PostController extends Controller
 { 
     //To integrade api/person/attach-post here to load post creation form
     function create_post(){
-        return view('dashboard');
+        return view('home');
     }
 
  

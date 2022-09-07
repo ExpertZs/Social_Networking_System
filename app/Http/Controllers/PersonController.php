@@ -75,22 +75,26 @@ class PersonController extends Controller
             }
 
             else{
+
                 $followedPeople=FollowPerson::where('follower_id',$user_id)->get();
                     foreach($followedPeople as $data)
                     {
-                        $followedPeopleId=$data->id;  
-                        $post= Post::where('creater_id', $user_id)->orwhere('creater_id', $followedPeopleId)->get();     
+                        $followedPeopleId=$data->person_id;  
+                        $post= Post::where('creater_id', $user_id)->orwhere('creater_id', $followedPeopleId)->get(); 
+                        
                     }
-                    $sendData['post']=$post;        
+                     
+                   $sendData['post']=$post;       
 
                    $followedPage=FollowPage::where('follower_id',$user_id)->get();
                    foreach($followedPage as $data)
                     {
-                        $followedPageId=$data->id;  
-                        $pagePost= PagePost::where('creater_id', $user_id)->orwhere('page_id', $followedPageId)->get();    
+                        $followedPageId=$data->page_id; 
+                        $pagePost= PagePost::where('creater_id', $user_id)->orwhere('page_id', $followedPageId)->get(); 
+
                     }
 
-                    $sendData['pagePost']=$pagePost;
+                    $sendData['pagePost']=$pagePost; 
             
 
                 return view('dashboard',$sendData);

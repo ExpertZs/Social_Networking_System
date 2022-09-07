@@ -24,9 +24,10 @@ class PageController extends Controller
     //To integrade api/page/create here to validate and store page creation form data into database
     function page_creation(Request $request){
         $user_id=Auth::user()->id;
+
         //checking that person is whether valid user or not
         if($user_id== 'null'){
-            return redirect('person/feed')->with('failure', 'Please login first to create any page');
+            return Redirect('person/feed')->with('failure', 'Please login first to create any page');
         }
         else{
             $data= $request->all();

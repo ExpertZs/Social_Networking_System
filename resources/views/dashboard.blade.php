@@ -53,10 +53,18 @@
 
                       @foreach($post as $data)
                         <div class="row mb-10"> 
-                            <h3> Created By: {{$data->creater_id}}</h3>
+                            <tr>
+                            <td>
+                                <h3> Created By: {{$data->creater_id}}</h3>
+                            </td>
+                            
+                            <td>
+                                <h2>{{$data->content}}</h2>
+                            </td>
+                        </tr>  
 
-                            <h2>{{$data->content}}</h2>
-                        </div>     
+                        </div>  
+                         
                       @endforeach
                     </div>
                     <br>
