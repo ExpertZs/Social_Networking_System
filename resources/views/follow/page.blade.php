@@ -5,17 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Follow Person') }}</div>
+                <div class="card-header">{{ __('Follow Page') }}</div>
 
 
                 <div class="card-body">
                    
-                    <form method="POST" action="{{URL::to('follow-person/'. $person->id) }}">
+                    <form method="POST" action="{{URL::to('follow-page/'. $page->id) }}">
                         @csrf
                         <div class="row mb-10">
 
                             <div class="col-md-6">
-                                <label for="person" class="col col-form-label text-md-end">{{$person->first_name}} {{$person->last_name}} </label>
+                                <label for="page" class="col col-form-label text-md-end">{{$page->page_name}}</label>
                             </div>
 
                             <div class="col-md-3">

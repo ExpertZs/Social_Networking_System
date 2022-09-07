@@ -8,6 +8,7 @@ use App\Models\Page;
 use App\Models\Post;
 use App\Models\PagePost;
 use App\Models\FollowPerson;
+use App\Models\FollowPage;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -42,4 +43,31 @@ class FollowController extends Controller
         return redirect('dashboard')->with('success', 'you successfully followed');
         }     
     }
+
+
+//To integrade api/follow/person/{personId} here to load person whom you would like to follow   
+    function search_page($pageId){
+        $page['page']=Page::where('id', $pageId)->first();
+        return view('follow/page', $page);
+    }
+
+ 
+    //To integrade api/follow/person/{personId} here to validate and store follow a person data into database
+    function follow_page(Request $request, $id){
+        $user_id=Auth::user()->id;
+        //checking that person is whether valid user or not
+        if($user_id== 'null'){
+            return redirect('dashboard')->with('failure', 'Please login first to create any post');
+        }
+        
+        else{
+            $data= $request->all();
+         FollowPage::create([     
+            'page_id' => $id,
+            'follower_id' => $user_id,
+        ]);
+        return redirect('dashboard')->with('success', 'you successfully followed');
+        }     
+    }
+
 }
