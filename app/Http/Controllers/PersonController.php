@@ -65,28 +65,30 @@ class PersonController extends Controller
 
     //To load person's feed data
     function dashboard(){
+        //Checking where person logged in or not
         if(Auth::check()){
             $user_id=Auth::user()->id;
             $post= Post::where('creater_id', $user_id)->get();
             $pagePost= PagePost::where('creater_id', $user_id)->get();    
 
+            //Checking wheather the person is new or older on the site
             if($post=='null' && $pagePost=='null' ){   
             return view('home');
             }
 
             else{
-
+                //Preparing the posts from himself and the person whom he follows    
                 $followedPeople=FollowPerson::where('follower_id',$user_id)->get();
                     foreach($followedPeople as $data)
                     {
                         $followedPeopleId=$data->person_id;  
                         $post= Post::where('creater_id', $user_id)->orwhere('creater_id', $followedPeopleId)->get(); 
                         
-                    }
-                     
-                   $sendData['post']=$post;       
+                }
+                $sendData['post']=$post; 
 
-                   $followedPage=FollowPage::where('follower_id',$user_id)->get();
+                //Preparing the posts from the pages where himself posts and he follows the pages
+                $followedPage=FollowPage::where('follower_id',$user_id)->get();
                    foreach($followedPage as $data)
                     {
                         $followedPageId=$data->page_id; 
@@ -94,8 +96,7 @@ class PersonController extends Controller
 
                     }
 
-                    $sendData['pagePost']=$pagePost; 
-            
+                    $sendData['pagePost']=$pagePost;  
 
                 return view('dashboard',$sendData);
             }

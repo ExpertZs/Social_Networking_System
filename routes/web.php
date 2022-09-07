@@ -68,7 +68,7 @@ Route::controller(FollowController::class)->group(function(){
     Route::post('follow-page/{id}','follow_page')->name('follow-page');
 });
 
-//To load person feed
+//To implement api/person/feed and load person's feed
 Route::get('person/feed', [App\Http\Controllers\PersonController::class, 'dashboard'])->name('person/feed');
 
 
