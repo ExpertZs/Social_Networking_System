@@ -20,7 +20,7 @@ class PersonController extends Controller
     {
         return view('auth/login');
     }
-
+    
     //To integrade api/auth/register api here to load registration form
     function registration(){
         return view('auth/register');
@@ -44,6 +44,9 @@ class PersonController extends Controller
         ]);
         return redirect('home')->with('success', 'Registration complete now you can login');
     }
+
+
+
 
     //To integrade api/auth/login api here to load login form
     function login(){

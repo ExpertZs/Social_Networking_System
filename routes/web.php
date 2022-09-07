@@ -27,9 +27,9 @@ Route::get('/home', [App\Http\Controllers\PersonController::class, 'index'])->na
 
 //To implement api/auth/register and api/auth/login with loading feed and logout functionality
 Route::controller(PersonController::class)->group(function(){
-    Route::get('auth/login','login')->name('auth/login');
     Route::get('auth/register','registration')->name('auth/register');
     Route::post('register','register')->name('register');
+    Route::get('auth/login','login')->name('auth/login');
     Route::post('login','validate_login')->name('login');
     Route::get('logout','logout')->name('logout');
 });
