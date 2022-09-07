@@ -63,7 +63,7 @@ Route::controller(FollowController::class)->group(function(){
 });
 
 //To implement api/follow/page/{pageId} with loading create post and save to database
-//Specail Note: please enter a valid person id in {personId}, Example: api/follow/person/1 when your person id is 2
+//Specail Note: please enter a valid page id in {pageId}, Example: api/follow/page/1 
 Route::controller(FollowController::class)->group(function(){
     Route::get('follow/page/{pageId}','search_page')->name('follow/page/{pageId}');
     Route::post('follow-page/{id}','follow_page')->name('follow-page');

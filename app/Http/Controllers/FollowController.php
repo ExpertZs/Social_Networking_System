@@ -27,7 +27,7 @@ class FollowController extends Controller
         $user_id=Auth::user()->id;
         //checking that person is whether valid user or not
         if($user_id== 'null'){
-            return redirect('dashboard')->with('failure', 'Please login first to create any post');
+            return redirect('dashboard')->with('failure', 'Please login first to follow any person');
         }
         //checking that person is whether valid user or not
         else if($user_id== $id){
@@ -45,28 +45,27 @@ class FollowController extends Controller
     }
 
 
-//To integrade api/follow/person/{personId} here to load person whom you would like to follow   
+//To integrade api/follow/page/{pageId} here to load page whom you would like to follow   
     function search_page($pageId){
         $page['page']=Page::where('id', $pageId)->first();
         return view('follow/page', $page);
     }
 
  
-    //To integrade api/follow/person/{personId} here to validate and store follow a person data into database
+    //To integrade api/follow/page/{pageId} here to validate and store follow a page data into database
     function follow_page(Request $request, $id){
         $user_id=Auth::user()->id;
         //checking that person is whether valid user or not
         if($user_id== 'null'){
-            return redirect('dashboard')->with('failure', 'Please login first to create any post');
+            return redirect('dashboard')->with('failure', 'Please login first to follow any page');
         }
-        
         else{
             $data= $request->all();
          FollowPage::create([     
             'page_id' => $id,
             'follower_id' => $user_id,
         ]);
-        return redirect('dashboard')->with('success', 'you successfully followed');
+        return redirect('dashboard')->with('success', 'you successfully followed the page');
         }     
     }
 
