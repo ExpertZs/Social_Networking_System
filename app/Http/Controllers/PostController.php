@@ -36,7 +36,7 @@ class PostController extends Controller
         }     
     }
 
-    //To integrade api/person/attach-post here to load post creation form
+    //To integrade api/page/{pageId}/attach-post here to load page post creation form
     
     function create_page_post($pageId){
         $page['page']=Page::where('id',$pageId)->first();
@@ -44,7 +44,7 @@ class PostController extends Controller
     }
 
  
-    //To integrade api/person/attach-post here to validate and store post creation form data into database
+    //To integrade api/page/{pageId}/attach-post here to validate and store page post creation form data into database
     function page_post_creation(Request $request, $id){
         $user_id=Auth::user()->id;
         //checking that person is whether valid user or not

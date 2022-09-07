@@ -47,6 +47,7 @@ Route::controller(PostController::class)->group(function(){
 });
 
 //To implement api/page/{pageId}/attach-post with loading create post and save to database
+//Specail Note: please enter a valid page id in {pageId}, Example: api/page/1/attach-post
 Route::controller(PostController::class)->group(function(){
     Route::get('page/{pageId}/attach-post','create_page_post')->name('page/{pageId}/attach-post');
     Route::post('page-post-creation/{id}','page_post_creation')->name('page-post-creation');
