@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 { 
-    //To integrade api/page/create here to load page creation form
+    //To integrade api/person/attach-post here to load post creation form
     function create_post(){
         return view('dashboard');
     }
 
  
-    //To integrade api/page/create here to validate and store page creation form data into database
+    //To integrade api/person/attach-post here to validate and store post creation form data into database
     function post_creation(Request $request){
         $user_id=Auth::user()->id;
         //checking that person is whether valid user or not
