@@ -14,15 +14,14 @@ use Illuminate\Support\Facades\Auth;
 
 class FollowController extends Controller
 {
-    //To integrade api/page/{pageId}/attach-post here to load page post creation form
-    
+    //To integrade api/follow/person/{personId} here to load person whom you would like to follow   
     function search_follow_person($personId){
         $person['person']=User::where('id', $personId)->first();
         return view('follow/person', $person);
     }
 
  
-    //To integrade api/page/{pageId}/attach-post here to validate and store page post creation form data into database
+    //To integrade api/follow/person/{personId} here to validate and store follow a person data into database
     function follow_person(Request $request, $id){
         $user_id=Auth::user()->id;
         //checking that person is whether valid user or not
