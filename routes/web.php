@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +34,16 @@ Route::controller(PersonController::class)->group(function(){
 });
 
 
-//To implement api/page/create with loading feed and logout functionality
+//To implement api/page/create with loading page create form and save to database
 Route::controller(PageController::class)->group(function(){
     Route::get('page/create','create_page')->name('page/create');
     Route::post('page-creation','page_creation')->name('page-creation');
 });
+
+//To implement api/person/attach-post with loading create post and save to database
+Route::controller(PostController::class)->group(function(){
+    Route::get('person/attach-post','create_post')->name('person/attach-post');
+    Route::post('post-creation','post_creation')->name('post-creation');
+});
+
+
