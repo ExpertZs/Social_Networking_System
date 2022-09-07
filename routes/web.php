@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\FollowController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +53,13 @@ Route::controller(PostController::class)->group(function(){
 Route::controller(PostController::class)->group(function(){
     Route::get('page/{pageId}/attach-post','create_page_post')->name('page/{pageId}/attach-post');
     Route::post('page-post-creation/{id}','page_post_creation')->name('page-post-creation');
+});
+
+//To implement api/follow/person/{personId} with loading create post and save to database
+//Specail Note: please enter a valid page id in {pageId}, Example: api/page/1/attach-post
+Route::controller(FollowController::class)->group(function(){
+    Route::get('follow/person/{personId}','search_follow_person')->name('follow/person/{personId}');
+    Route::post('follow-person/{id}','follow_person')->name('follow-person');
 });
 
 
