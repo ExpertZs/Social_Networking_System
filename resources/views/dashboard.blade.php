@@ -46,6 +46,33 @@
                     <div><h1>You are loged in </h1></div>
                     <br>
                     
+
+                    <div>
+                        <div>Post</div>
+                        <hr>
+
+                      @foreach($post as $data)
+                        <div class="row mb-10"> 
+                            <h3> Created By: {{$data->creater_id}}</h3>
+
+                            <h2>{{$data->content}}</h2>
+                        </div>     
+                      @endforeach
+                    </div>
+                    <br>
+
+                    <div>
+                        <div>Post from Page</div>
+                        <hr>
+                      @foreach($pagePost as $data)
+                        <div class="row mb-10"> 
+                            <h3> Created By: {{$data->creater_id}}</h3>
+
+                            <h2>{{$data->content}}</h2>
+                        </div>
+                      @endforeach
+                    </div>
+                    
                 </div>
                    
                 </div>

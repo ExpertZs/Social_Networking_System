@@ -51,7 +51,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-success">
-                                    <a style="color: white" href="{{ route('dashboard') }}">Return Dashboard</a>
+                                    <a style="color: white" href="{{ route('person/feed') }}">Return Dashboard</a>
                                     
                                 </button>
                             </div>

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Page;
+use App\Models\Post;
+use App\Models\PagePost;
+use App\Models\FollowPerson;
+use App\Models\FollowPage;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +26,7 @@ class PageController extends Controller
         $user_id=Auth::user()->id;
         //checking that person is whether valid user or not
         if($user_id== 'null'){
-            return redirect('dashboard')->with('failure', 'Please login first to create any page');
+            return redirect('person/feed')->with('failure', 'Please login first to create any page');
         }
         else{
             $data= $request->all();
@@ -31,7 +35,7 @@ class PageController extends Controller
             'page_info' => $data['page_info'],
             'creater_id' => $user_id,
         ]);
-        return redirect('dashboard')->with('success', 'Page creation success');
+        return redirect('person/feed')->with('success', 'Page creation success');
         }     
     }
 }

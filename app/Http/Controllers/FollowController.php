@@ -27,11 +27,11 @@ class FollowController extends Controller
         $user_id=Auth::user()->id;
         //checking that person is whether valid user or not
         if($user_id== 'null'){
-            return redirect('dashboard')->with('failure', 'Please login first to follow any person');
+            return redirect('person/feed')->with('failure', 'Please login first to follow any person');
         }
         //checking that person is whether valid user or not
         else if($user_id== $id){
-            return redirect('dashboard')->with('failure', 'You can not follow yourself');
+            return redirect('person/feed')->with('failure', 'You can not follow yourself');
         }
 
         else{
@@ -40,7 +40,7 @@ class FollowController extends Controller
             'person_id' => $id,
             'follower_id' => $user_id,
         ]);
-        return redirect('dashboard')->with('success', 'you successfully followed');
+        return redirect('person/feed')->with('success', 'you successfully followed');
         }     
     }
 
@@ -57,15 +57,15 @@ class FollowController extends Controller
         $user_id=Auth::user()->id;
         //checking that person is whether valid user or not
         if($user_id== 'null'){
-            return redirect('dashboard')->with('failure', 'Please login first to follow any page');
+            return redirect('person/feed')->with('failure', 'Please login first to follow any page');
         }
-        else{
+        else{ 
             $data= $request->all();
          FollowPage::create([     
             'page_id' => $id,
             'follower_id' => $user_id,
         ]);
-        return redirect('dashboard')->with('success', 'you successfully followed the page');
+        return redirect('person/feed')->with('success', 'you successfully followed the page');
         }     
     }
 

@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Page;
+use App\Models\Post;
+use App\Models\PagePost;
+use App\Models\FollowPerson;
+use App\Models\FollowPage;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -53,7 +58,7 @@ class PersonController extends Controller
         ]);
         $credentials = $request->only('email','password');
         if(Auth::attempt($credentials)){
-            return redirect('dashboard');
+            return redirect('person/feed');
         }
         return redirect('auth/login')->with('failure', 'you can not login');
     }
@@ -61,7 +66,37 @@ class PersonController extends Controller
     //To load person's feed data
     function dashboard(){
         if(Auth::check()){
-            return view('dashboard');
+            $user_id=Auth::user()->id;
+            $post= Post::where('creater_id', $user_id)->get();
+            $pagePost= PagePost::where('creater_id', $user_id)->get();    
+
+            if($post=='null' && $pagePost=='null' ){   
+            return view('home');
+            }
+
+            else{
+                $followedPeople=FollowPerson::where('follower_id',$user_id)->get();
+                    foreach($followedPeople as $data)
+                    {
+                        $followedPeopleId=$data->id;  
+                        $post= Post::where('creater_id', $user_id)->orwhere('creater_id', $followedPeopleId)->get();     
+                    }
+                    $sendData['post']=$post;        
+
+                   $followedPage=FollowPage::where('follower_id',$user_id)->get();
+                   foreach($followedPage as $data)
+                    {
+                        $followedPageId=$data->id;  
+                        $pagePost= PagePost::where('creater_id', $user_id)->orwhere('page_id', $followedPageId)->get();    
+                    }
+
+                    $sendData['pagePost']=$pagePost;
+            
+
+                return view('dashboard',$sendData);
+            }
+
+            
         }
 
         return redirect('home')->with('failure', 'you are not loged in');

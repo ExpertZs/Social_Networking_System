@@ -31,7 +31,6 @@ Route::controller(PersonController::class)->group(function(){
     Route::get('auth/register','registration')->name('auth/register');
     Route::post('register','register')->name('register');
     Route::post('login','validate_login')->name('login');
-    Route::get('dashboard','dashboard')->name('dashboard');
     Route::get('logout','logout')->name('logout');
 });
 
@@ -68,6 +67,10 @@ Route::controller(FollowController::class)->group(function(){
     Route::get('follow/page/{pageId}','search_page')->name('follow/page/{pageId}');
     Route::post('follow-page/{id}','follow_page')->name('follow-page');
 });
+
+//To load person feed
+Route::get('person/feed', [App\Http\Controllers\PersonController::class, 'dashboard'])->name('person/feed');
+
 
 
 
